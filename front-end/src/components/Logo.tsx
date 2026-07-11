@@ -3,9 +3,12 @@ import {Image} from "react-bootstrap";
 import logo from "../assets/qa-seer_LOGO_Withe.webp"
 
 function Logo() {
-    return(
+    return (
         <>
-            <Image src={logo} />
+            <Image
+                   src={logo}
+                   className={"w-50"}
+            />
         </>
     )
 }

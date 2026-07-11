@@ -4,7 +4,7 @@ function InputField() {
     return (
         <>
                 <InputGroup className={"border border-4 border-dark rounded p-0"}>
-                    <FormControl className={"rounded-0"} placeholder={"Enter The URL Here."} />
+                    <FormControl size="lg"  className={"rounded-0"} placeholder={"Enter The URL Here."} />
                     <Button variant={"warning"}>Shorten it</Button>
                 </InputGroup>
         </>

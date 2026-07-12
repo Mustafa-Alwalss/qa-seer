@@ -30,7 +30,7 @@ function InputField() {
             {/*<PopUp/>*/}
             <InputGroup className={"border border-5 border-dark rounded p-0"}>
                 <FormControl value={URL} onChange={handleURLChange} size="lg" className={"rounded-0"}
-                             placeholder={"Enter The URL Here."}/>
+                             placeholder={"Enter The URL Here. \"http://example.com\""}/>
                 <Button disabled={!enableButton} variant={"warning"} className={"rounded-0"}>Shorten it</Button>
             </InputGroup>
         </>

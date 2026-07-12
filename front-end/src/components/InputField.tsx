@@ -1,7 +1,10 @@
 import {Button, FormControl, InputGroup} from "react-bootstrap";
 import {useState} from "react";
 // import PopUp from "./PopUp.tsx";
-import {URLChecker} from "../utils/URLChecker.ts"
+import URLChecker from "../utils/URLChecker.ts"
+
+import backEndCommunicator from "../utils/backEndCommunicator.ts";
+
 function InputField() {
     // HERE WHERE THE URL WILL BE STORED.
     const [URL, setURL] = useState<string>("")
@@ -12,13 +15,16 @@ function InputField() {
     // const [showPopUP, setShowPopUP] = useState<boolean>(false);
 
 
-    //
-    // function onSubmit() {
-    //
-    //     if (URL !== "") {
-    //
-    //     }
-    // }
+
+    async function onSubmit(url: string){
+
+        const  get = await backEndCommunicator.getTest()
+        console.log("from get  " + get)
+
+        const response = await backEndCommunicator.postTest(url)
+        console.log("this is from inputField.tsx "+response)
+
+    }
 
     function handleURLChange(e:React.ChangeEvent<HTMLInputElement>) {
             setURL(e.currentTarget.value)
@@ -31,7 +37,14 @@ function InputField() {
             <InputGroup className={"border border-5 border-dark rounded p-0"}>
                 <FormControl value={URL} onChange={handleURLChange} size="lg" className={"rounded-0"}
                              placeholder={"Enter The URL Here. \"http://example.com\""}/>
-                <Button disabled={!enableButton} variant={"warning"} className={"rounded-0"}>Shorten it</Button>
+                <Button
+                    disabled={!enableButton}
+                    variant={"warning"}
+                    className={"rounded-0"}
+                    onClick={() =>onSubmit(URL)}
+                >
+                    Shorten it
+                </Button>
             </InputGroup>
         </>
     )

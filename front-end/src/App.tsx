@@ -2,6 +2,7 @@ import './App.css'
 import Logo from "./components/Logo.tsx";
 import {Col, Container, Row} from "react-bootstrap";
 import InputField from "./components/InputField.tsx";
+import Footer from "./components/Footer.tsx";
 
 function App() {
     return (
@@ -16,6 +17,9 @@ function App() {
                     <Col >
                         <InputField/>
                     </Col>
+                </Row>
+                <Row>
+                    <Footer/>
                 </Row>
             </Container>
         </>

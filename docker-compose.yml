@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:15.18-alpine3.24
+    container_name: db-pg-qa-seer
+    environment:
+        POSTGRES_USER: qa-seer-admin
+        POSTGRES_PASSWORD: admin
+        POSTGRES_DB: qa-seer-database
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin-qa-seer
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@qa-seer.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+volumes:
+  pgdata:

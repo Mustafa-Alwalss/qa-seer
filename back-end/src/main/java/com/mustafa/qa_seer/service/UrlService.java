@@ -7,6 +7,8 @@ import com.mustafa.qa_seer.repository.UrlRepository;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.net.URI;
+import java.net.URL;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,6 +20,8 @@ public class UrlService {
     private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     private static final int CODE_LENGTH = 10;
     private static final SecureRandom RANDOM = new SecureRandom();
+    private static final int MAX_MINUTES = 10080; // 7 days in minutes
+    private static final int MAX_DAYS = 365;
 
     private final UrlRepository urlRepository;
 
@@ -35,9 +39,16 @@ public class UrlService {
         url.setCreatedAt(LocalDateTime.now());
 
         if (userChoose.isItInMinutes) {
-            url.setExpiresAt(LocalDateTime.now().plusMinutes(userChoose.amount));
+            //IF THE AMOUNT IS MORE THAN ONE WEEK IN MINUTES THROW AN ERROR.
+            if (userChoose.amount > MAX_MINUTES) {
+                throw new IllegalArgumentException("Expiry in minutes can't exceed 7 days");
+            } else url.setExpiresAt(LocalDateTime.now().plusMinutes(userChoose.amount));
+
         } else {
-            url.setExpiresAt(LocalDateTime.now().plusDays(userChoose.amount));
+            //IF THE AMOUNT IS MORE THAN ONE YEAR IN DAYS THROW AN ERROR.
+            if (userChoose.amount > MAX_DAYS) {
+                throw new IllegalArgumentException("Expiry in days can't exceed 365 days");
+            } else url.setExpiresAt(LocalDateTime.now().plusDays(userChoose.amount));
         }
 
         url.setUrlStatus(UrlStatus.ACTIVE);
@@ -78,10 +89,16 @@ public class UrlService {
 
         urlRepository.saveAll(expiredUrls);
     }
+
     //CHECK IF THE URL IS VALID OR NOT.
     private void validateUrl(String url) {
         try {
-            new java.net.URI(url).toURL();
+            URL parsedUrl = new URI(url).toURL();
+            if (!parsedUrl.getProtocol().equals("http") && !parsedUrl.getProtocol().equals("https")) {
+                throw new IllegalArgumentException("Only http and https URLs are allowed");
+            }
+        } catch (IllegalArgumentException e) {
+            throw e;
         } catch (Exception e) {
             throw new IllegalArgumentException("Invalid URL format");
         }

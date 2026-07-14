@@ -2,6 +2,8 @@ import { Modal, Button } from "react-bootstrap";
 import type {PopUpPropsInterface} from "../type/PopUpPropsInterface.ts";
 
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 function PopUp({ popUpData, onClose }: PopUpPropsInterface) {
     return (
@@ -16,8 +18,8 @@ function PopUp({ popUpData, onClose }: PopUpPropsInterface) {
                 {popUpData?.variant === "SUCCESS" && (
                     <div>
                         <p>Your shortened link:</p>
-                        <a href={`http://localhost:8080/goto/${popUpData.data.shortCode}`} target="_blank" rel="noreferrer">
-                            {`http://localhost:8080/goto/${popUpData.data.shortCode}`}
+                        <a href={`http://${BASE_URL}/goto/${popUpData.data.shortCode}`} target="_blank" rel="noreferrer">
+                            {`http://${BASE_URL}/goto/${popUpData.data.shortCode}`}
                         </a>
                     </div>
                 )}

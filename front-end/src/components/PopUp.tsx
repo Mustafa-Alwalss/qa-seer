@@ -18,8 +18,8 @@ function PopUp({ popUpData, onClose }: PopUpPropsInterface) {
                 {popUpData?.variant === "SUCCESS" && (
                     <div>
                         <p>Your shortened link:</p>
-                        <a href={`http://${BASE_URL}/goto/${popUpData.data.shortCode}`} target="_blank" rel="noreferrer">
-                            {`http://${BASE_URL}/goto/${popUpData.data.shortCode}`}
+                        <a href={`${BASE_URL}/goto/${popUpData.data.shortCode}`} target="_blank" rel="noreferrer">
+                            {`${BASE_URL}/goto/${popUpData.data.shortCode}`}
                         </a>
                     </div>
                 )}

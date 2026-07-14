@@ -26,6 +26,8 @@ public class UrlService {
     }
 
     public Url createShortUrl(String originalUrl, UserSelectedExpiryDate userChoose) {
+        validateUrl(originalUrl);
+
         String shortCode = generateUniqueCode();
         Url url = new Url();
         url.setOriginalUrl(originalUrl);
@@ -75,5 +77,13 @@ public class UrlService {
         }
 
         urlRepository.saveAll(expiredUrls);
+    }
+    //CHECK IF THE URL IS VALID OR NOT.
+    private void validateUrl(String url) {
+        try {
+            new java.net.URI(url).toURL();
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid URL format");
+        }
     }
 }

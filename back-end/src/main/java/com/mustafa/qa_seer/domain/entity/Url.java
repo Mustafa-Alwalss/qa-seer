@@ -21,9 +21,11 @@ public class Url {
     @Column(name = "short_code", unique = true , nullable = false )
     private String shortCode;
 
-
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    @Column(name = "expires_at", nullable = false)
+    private LocalDateTime expiresAt;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "url_status" , nullable = false)
@@ -34,11 +36,13 @@ public class Url {
     public Url() {
     }
 
-    public Url(UUID id, String originalUrl, String shortCode, LocalDateTime createdAt, UrlStatus urlStatus) {
+
+    public Url(UUID id, String originalUrl, String shortCode, LocalDateTime createdAt, LocalDateTime expiresAt, UrlStatus urlStatus) {
         this.id             = id            ;
         this.originalUrl    = originalUrl   ;
-        this.shortCode      = shortCode      ;
+        this.shortCode      = shortCode     ;
         this.createdAt      = createdAt     ;
+        this.expiresAt      = expiresAt     ;
         this.urlStatus      = urlStatus     ;
     }
 
@@ -57,6 +61,10 @@ public class Url {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public LocalDateTime getExpiresAt() {
+        return expiresAt;
     }
 
     public UrlStatus getUrlStatus() {
@@ -78,6 +86,10 @@ public class Url {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public void setExpiresAt(LocalDateTime expiresAt) {
+        this.expiresAt = expiresAt;
     }
 
     public void setUrlStatus(UrlStatus urlStatus) {
@@ -104,6 +116,7 @@ public class Url {
                 ", originalUrl='"   + originalUrl   + '\''  +
                 ", shortCode='"     + shortCode     + '\''  +
                 ", createdAt="      + createdAt             +
+                ", expiresAt="      + expiresAt             +
                 ", urlStatus="      + urlStatus             +
                 '}';
     }

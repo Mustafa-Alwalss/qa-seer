@@ -1,9 +1,9 @@
 import axios from 'axios';
-import type {CreateUrlRequest} from "../type/CreateUrlRequest.ts";
-import type {UrlResponse} from "../type/UrlResponse.ts";
-import type {ErrorResponse} from "../type/ErrorResponse.ts";
+import type { CreateUrlRequest } from "../type/CreateUrlRequest.ts";
+import type { UrlResponse } from "../type/UrlResponse.ts";
+import type { ErrorResponse } from "../type/ErrorResponse.ts";
 
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export default class BackEndCommunicator {
     static async getUrl(shortCode: string): Promise<UrlResponse> {
@@ -11,8 +11,8 @@ export default class BackEndCommunicator {
         return response.data
     }
 
-    static async postSendUrl(req:CreateUrlRequest):Promise<UrlResponse> {
-        const response = await axios.post<UrlResponse>(`${BASE_URL}/api/urls`,req)
+    static async postSendUrl(req: CreateUrlRequest): Promise<UrlResponse> {
+        const response = await axios.post<UrlResponse>(`${BASE_URL}/api/urls`, req)
         return response.data
     }
 

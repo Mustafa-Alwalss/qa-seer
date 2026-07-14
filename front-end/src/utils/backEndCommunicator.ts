@@ -7,12 +7,12 @@ const BASE_URL = 'http://localhost:8080';
 
 export default class BackEndCommunicator {
     static async getUrl(shortCode: string): Promise<UrlResponse> {
-        const response = await axios.get<UrlResponse>(`${BASE_URL}${shortCode}`);
+        const response = await axios.get<UrlResponse>(`${BASE_URL}/api/urls/${shortCode}`);
         return response.data
     }
 
     static async postSendUrl(req:CreateUrlRequest):Promise<UrlResponse> {
-        const response = await axios.post<UrlResponse>(BASE_URL,req)
+        const response = await axios.post<UrlResponse>(`${BASE_URL}/api/urls`,req)
         return response.data
     }
 

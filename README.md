@@ -51,7 +51,8 @@ To run this project, you will need to add the following environment variables to
 ### For Front-end 
 you have to create another `.env` file inside the front-end folder
 
-`VITE_API_BASE_URL`
+`VITE_API_BASE_URL`        → back-end API origin (e.g. `https://qa-seer.onrender.com`)
+`VITE_APP_BASE_URL`        → front-end site origin (used for shareable short links `/:shortCode`)
 ## API endpoints
 
 #### Create short URL

@@ -30,6 +30,7 @@ function InputField() {
 
 
     async function onSubmit(urlToSend: CreateUrlRequest) {
+        setPopUpData({ variant: "LOADING" });
         try {
             const response = await backEndCommunicator.postSendUrl(urlToSend);
             setPopUpData({ variant: "SUCCESS", data: response });

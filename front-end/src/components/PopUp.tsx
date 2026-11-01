@@ -2,18 +2,6 @@ import { Modal, Button, Spinner } from "react-bootstrap";
 import type {PopUpPropsInterface} from "../type/PopUpPropsInterface.ts";
 
 
-// Resolves the front-end origin used for shareable short links: <APP_URL>/:shortCode
-// Checks the VITE_APP_BASE_URL env var first, falls back to the current window origin,
-// and strips any trailing slash so we never render a double slash.
-function getAppBaseUrl(): string {
-    const configured = import.meta.env.VITE_APP_BASE_URL;
-    const base = configured ? configured : window.location.origin;
-    return base.replace(/\/+$/, "");
-}
-
-const APP_URL = getAppBaseUrl();
-
-
 function PopUp({ popUpData, onClose }: PopUpPropsInterface) {
     const isLoading = popUpData?.variant === "LOADING";
 
@@ -38,8 +26,8 @@ function PopUp({ popUpData, onClose }: PopUpPropsInterface) {
                 {popUpData?.variant === "SUCCESS" && (
                     <div>
                         <p>Your shortened link:</p>
-                        <a href={`${APP_URL}/${popUpData.data.shortCode}`} target="_blank" rel="noreferrer">
-                            {`${APP_URL}/${popUpData.data.shortCode}`}
+                        <a href={`${window.location.origin}/${popUpData.data.shortCode}`} target="_blank" rel="noreferrer">
+                            {`${window.location.origin}/${popUpData.data.shortCode}`}
                         </a>
                     </div>
                 )}

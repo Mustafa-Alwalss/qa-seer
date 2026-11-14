@@ -2,10 +2,12 @@ import {Col, Container, Row} from "react-bootstrap";
 import Logo from "./Logo.tsx";
 import InputField from "./InputField.tsx";
 import Footer from "./Footer.tsx";
+import LanguageSwitcher from "./LanguageSwitcher.tsx";
 
 function HomePage() {
     return (
         <Container className={"vh-100 d-flex flex-column "}>
+            <LanguageSwitcher/>
             <Row className="mt-5 ">
                 <Col className={"text-center"}>
                     <Logo/>

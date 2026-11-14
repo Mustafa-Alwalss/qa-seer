@@ -1,4 +1,5 @@
 import axios from 'axios';
+import i18n from "../i18n";
 import type { CreateUrlRequest } from "../type/CreateUrlRequest.ts";
 import type { UrlResponse } from "../type/UrlResponse.ts";
 import type { ErrorResponse } from "../type/ErrorResponse.ts";
@@ -21,9 +22,9 @@ export default class BackEndCommunicator {
             if (error.response) {
                 return error.response.data.message;
             }
-            return "Could not reach the server. Please check your connection.";
+            return i18n.t("errors.network");
         }
-        return "An unexpected error occurred.";
+        return i18n.t("errors.unexpected");
     }
 
 

@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {useTranslation} from "react-i18next";
 import {Container, FormControl, InputGroup} from "react-bootstrap";
 import URLChecker from "../utils/URLChecker.ts"
 import backEndCommunicator from "../utils/backEndCommunicator.ts";
@@ -17,6 +18,7 @@ import PopUp from "./PopUp.tsx";
 
 
 function InputField() {
+    const {t} = useTranslation();
     // HERE WHERE THE URL WILL BE STORED.
     const [urlToSend, setUrlToSend] = useState<CreateUrlRequest>({originalUrl: "", amount: 1, isItInMinutes: false});
 
@@ -66,10 +68,11 @@ function InputField() {
         <>
             <PopUp popUpData={popUpData} onClose={() => setPopUpData(null)} />
             <Container>
-                <InputGroup className={"border border-5 border-dark rounded p-0"}>
+                {/* Always LTR: the input and button keep their layout in every language. */}
+                <InputGroup dir="ltr" className={"border border-5 border-dark rounded p-0"}>
                     <FormControl value={urlToSend?.originalUrl} onChange={handleURLChange} size="lg"
                                  className={"rounded-0"}
-                                 placeholder={"Enter The URL Here. \"http://example.com\""}/>
+                                 placeholder={t("input.placeholder")}/>
                     <motion.button
                         className={"sendBtn btn btn-warning rounded-0"}
                         disabled={!enableButton || selectedOption === null}
@@ -103,7 +106,7 @@ function InputField() {
                                 <FontAwesomeIcon icon={faPaperPlane}/>
                             </motion.div>
                             :
-                            <span className={"font-monospace"}>Shorten it</span>
+                            <span className={"font-monospace"}>{t("input.submit")}</span>
                         }
                     </motion.button>
                 </InputGroup>

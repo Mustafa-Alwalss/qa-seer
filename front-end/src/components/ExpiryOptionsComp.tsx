@@ -1,10 +1,12 @@
 import { Dropdown } from "react-bootstrap";
+import {useTranslation} from "react-i18next";
 import type {ExpiryOptionsProps} from "../type/ExpiryOptionsProps.ts";
 import type {ExpiryOption} from "../type/ExpiryOption.ts";
 
 
 
 function ExpiryOptionsComp({selectedOption,setSelectedOption,}: ExpiryOptionsProps) {
+    const {t} = useTranslation();
 
     const expiryOptionList: ExpiryOption[] = [
         { amount: 1, isItInMinutes: true },
@@ -15,14 +17,16 @@ function ExpiryOptionsComp({selectedOption,setSelectedOption,}: ExpiryOptionsPro
         { amount: 30, isItInMinutes: false },
     ];
 
+    function formatOption(option: ExpiryOption) {
+        return option.isItInMinutes
+            ? t("expiry.minutes", {count: option.amount})
+            : t("expiry.days", {count: option.amount});
+    }
+
     return (
         <Dropdown>
             <Dropdown.Toggle variant="warning">
-                {selectedOption
-                    ? `${selectedOption.amount} ${
-                        selectedOption.isItInMinutes ? "min" : "days"
-                    }`
-                    : "Select expiry option"}
+                {selectedOption ? formatOption(selectedOption) : t("expiry.select")}
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
@@ -31,9 +35,7 @@ function ExpiryOptionsComp({selectedOption,setSelectedOption,}: ExpiryOptionsPro
                         key={index}
                         onClick={() => setSelectedOption(option)}
                     >
-                        {`${option.amount} ${
-                            option.isItInMinutes ? "min" : "days"
-                        }`}
+                        {formatOption(option)}
                     </Dropdown.Item>
                 ))}
             </Dropdown.Menu>

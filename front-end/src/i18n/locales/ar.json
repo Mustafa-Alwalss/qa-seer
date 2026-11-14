@@ -1,0 +1,39 @@
+{
+  "input": {
+    "placeholder": "أدخل الرابط هنا. \"http://example.com\"",
+    "submit": "اختصره"
+  },
+  "expiry": {
+    "select": "اختر مدة الصلاحية",
+    "minutes_zero": "{{count}} دقيقة",
+    "minutes_one": "دقيقة واحدة",
+    "minutes_two": "دقيقتان",
+    "minutes_few": "{{count}} دقائق",
+    "minutes_many": "{{count}} دقيقة",
+    "minutes_other": "{{count}} دقيقة",
+    "days_zero": "{{count}} يوم",
+    "days_one": "يوم واحد",
+    "days_two": "يومان",
+    "days_few": "{{count}} أيام",
+    "days_many": "{{count}} يومًا",
+    "days_other": "{{count}} يوم"
+  },
+  "popup": {
+    "loadingTitle": "جارٍ الاختصار...",
+    "loadingBody": "جارٍ اختصار رابطك...",
+    "successTitle": "تم اختصار الرابط!",
+    "errorTitle": "حدث خطأ ما",
+    "yourLink": "رابطك المختصر:",
+    "close": "إغلاق"
+  },
+  "footer": {
+    "repo": "زر مستودع هذا المشروع."
+  },
+  "errors": {
+    "network": "تعذّر الاتصال بالخادم. يرجى التحقق من اتصالك.",
+    "unexpected": "حدث خطأ غير متوقع."
+  },
+  "language": {
+    "switchTo": "التبديل إلى الإنجليزية"
+  }
+}

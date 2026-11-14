@@ -1,0 +1,31 @@
+{
+  "input": {
+    "placeholder": "Enter The URL Here. \"http://example.com\"",
+    "submit": "Shorten it"
+  },
+  "expiry": {
+    "select": "Select expiry option",
+    "minutes_one": "{{count}} min",
+    "minutes_other": "{{count}} min",
+    "days_one": "{{count}} day",
+    "days_other": "{{count}} days"
+  },
+  "popup": {
+    "loadingTitle": "Shortening...",
+    "loadingBody": "Shortening your link...",
+    "successTitle": "Link Shortened!",
+    "errorTitle": "Something went wrong",
+    "yourLink": "Your shortened link:",
+    "close": "Close"
+  },
+  "footer": {
+    "repo": "Visit The Repo Of This Project."
+  },
+  "errors": {
+    "network": "Could not reach the server. Please check your connection.",
+    "unexpected": "An unexpected error occurred."
+  },
+  "language": {
+    "switchTo": "Switch to Arabic"
+  }
+}

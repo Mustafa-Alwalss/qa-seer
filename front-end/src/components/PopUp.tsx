@@ -1,8 +1,10 @@
 import { Modal, Button, Spinner } from "react-bootstrap";
+import {useTranslation} from "react-i18next";
 import type {PopUpPropsInterface} from "../type/PopUpPropsInterface.ts";
 
 
 function PopUp({ popUpData, onClose }: PopUpPropsInterface) {
+    const {t} = useTranslation();
     const isLoading = popUpData?.variant === "LOADING";
 
     return (
@@ -10,8 +12,8 @@ function PopUp({ popUpData, onClose }: PopUpPropsInterface) {
             <Modal.Header closeButton={!isLoading}>
                 <Modal.Title>
                     {isLoading
-                        ? "Shortening..."
-                        : popUpData?.variant === "SUCCESS" ? "Link Shortened!" : "Something went wrong"}
+                        ? t("popup.loadingTitle")
+                        : popUpData?.variant === "SUCCESS" ? t("popup.successTitle") : t("popup.errorTitle")}
                 </Modal.Title>
             </Modal.Header>
 
@@ -19,14 +21,14 @@ function PopUp({ popUpData, onClose }: PopUpPropsInterface) {
                 {isLoading && (
                     <div className="d-flex flex-column align-items-center justify-content-center vh-75">
                         <Spinner animation="border" variant="warning" />
-                        <p className="mt-3 text-muted">Shortening your link...</p>
+                        <p className="mt-3 text-muted">{t("popup.loadingBody")}</p>
                     </div>
                 )}
 
                 {popUpData?.variant === "SUCCESS" && (
                     <div>
-                        <p>Your shortened link:</p>
-                        <a href={`${window.location.origin}/${popUpData.data.shortCode}`} target="_blank" rel="noreferrer">
+                        <p>{t("popup.yourLink")}</p>
+                        <a href={`${window.location.origin}/${popUpData.data.shortCode}`} target="_blank" rel="noreferrer" dir="ltr">
                             {`${window.location.origin}/${popUpData.data.shortCode}`}
                         </a>
                     </div>
@@ -40,7 +42,7 @@ function PopUp({ popUpData, onClose }: PopUpPropsInterface) {
             {!isLoading && (
                 <Modal.Footer>
                     <Button variant="secondary" onClick={onClose}>
-                        Close
+                        {t("popup.close")}
                     </Button>
                 </Modal.Footer>
             )}

@@ -7,3 +7,58 @@
 .sendBtn {
     min-width: 125px;
 }
+
+/* Physical `right` (not inset-inline-end) keeps the switch in the same spot in LTR and RTL. */
+.language-switch {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    width: 5.5rem;
+    height: 2.25rem;
+    padding: 0.2rem;
+
+    background: #fff;
+    border: 2px solid #fff;
+    border-radius: 999px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.language-switch:focus-visible {
+    outline: 3px solid #000;
+    outline-offset: 2px;
+}
+
+.language-switch-knob {
+    position: absolute;
+    top: 0.2rem;
+    bottom: 0.2rem;
+    left: 0.2rem;
+    width: calc(50% - 0.2rem);
+    background: #c10303;
+    border-radius: 999px;
+    transition: transform 0.25s ease;
+}
+
+.language-switch.is-ar .language-switch-knob {
+    transform: translateX(100%);
+}
+
+.language-switch-label {
+    position: relative;
+    font-weight: 700;
+    font-size: 0.9rem;
+    line-height: 1;
+    color: #c10303;
+    transition: color 0.25s ease;
+}
+
+.language-switch:not(.is-ar) .label-en,
+.language-switch.is-ar .label-ar {
+    color: #fff;
+}
